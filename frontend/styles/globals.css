@@ -1,9 +1,49 @@
+:root {
+  --scrollbar-width: 8px;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--light-200);
+  font-family: Quicksand400;
+  width: 100%;
+}
+
+/* Fix: jumping popup, sidebar, table / scroll behind popup */
+html {
+  overflow-x: hidden;
+}
+
+html.modal-show {
+  overflow-y: hidden;
+}
+
+html.modal-show .modal {
+  width: calc(100% - var(--scrollbar-width));
+}
+
+html.modal-show .dashboard-container {
+  width: calc(100% - var(--scrollbar-width));
+}
+
+html.modal-show .navbar {
+  width: calc(280 * 100% / 1440 - 1.5px);
+}
+/* Fix: jumping popup, sidebar, table / scroll behind popup */
+
+@media screen and (min-width: 768px) {
+  body::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+  }
+  body::-webkit-scrollbar-track {
+    background-color: var(--light-200);
+  }
+  body::-webkit-scrollbar-thumb {
+    background: var(--blue-100);
+    border-radius: 10px;
+  }
 }
 
 a {
@@ -15,12 +55,103 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition-delay: 9999s;
+  transition-delay: 9999s;
+}
+
+.ellipsis-one-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  width: 100%;
+}
+
+.ellipsis-two-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  width: auto;
+  max-height: 48px;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+@font-face {
+  font-family: Quicksand400;
+  src: url('../public/fonts/Quicksand-Regular.ttf');
+}
+@font-face {
+  font-family: Quicksand500;
+  src: url('../public/fonts/Quicksand-Medium.ttf');
+}
+@font-face {
+  font-family: Quicksand600;
+  src: url('../public/fonts/Quicksand-SemiBold.ttf');
+}
+@font-face {
+  font-family: Quicksand700;
+  src: url('../public/fonts/Quicksand-Bold.ttf');
+}
+@font-face {
+  font-family: Salesforce700;
+  src: url('../public/fonts/SalesforceSans-Bold.ttf');
+}
+@font-face {
+  font-family: Salesforce400;
+  src: url('../public/fonts/SalesforceSans-Regular.ttf');
+}
+@font-face {
+  font-family: Arial400;
+  src: url('../public/fonts/Arial.ttf');
+}
+@font-face {
+  font-family: Arial700;
+  src: url('../public/fonts/Arial-Bold.ttf');
+}
+@font-face {
+  font-family: Montserrat500;
+  src: url('../public/fonts/Arial-Bold.ttf');
+}
+@font-face {
+  font-family: AvenirNext400;
+  src: url('../public/fonts/AvenirNextPForBBG.ttf');
+}
+@font-face {
+  font-family: AvenirNext600;
+  src: url('../public/fonts/AvenirNextPForBBG-Demi.otf');
+}
+@font-face {
+  font-family: AvenirNext700;
+  src: url('../public/fonts/AvenirNextPForBBG-Bold.otf');
+}
+@font-face {
+  font-family: BebasNeue;
+  src: url('../public/fonts/BebasNeue-Regular.ttf');
+}
+@font-face {
+  font-family: MyriadPro400;
+  src: url('../public/fonts/MyriadPro-Regular.otf');
+}
+@font-face {
+  font-family: MyriadPro700;
+  src: url('../public/fonts/MyriadPro-Bold.otf');
+}
+
+textarea {
+  resize: none;
+}
+
+/* Fix pie chart blink when mouse over */
+.google-visualization-tooltip {
+  pointer-events: none;
 }

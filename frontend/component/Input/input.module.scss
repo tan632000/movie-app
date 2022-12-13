@@ -1,0 +1,133 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  &.icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0px 24px;
+    label {
+      padding-left: 0;
+      padding-top: 5px;
+    }
+  }
+  label {
+    color: var(--violet-100);
+    padding-left: 16px;
+    font-size: 12px;
+    line-height: 20px;
+    font-family: Quicksand500;
+  }
+  input,
+  .textarea {
+    border: 1px solid var(--blue-100);
+    border-radius: 8px;
+    color: var(--blue-600);
+    outline: none;
+    background-color: var(--white);
+    padding: 12px 16px;
+    margin-top: 2px;
+    font-family: Quicksand500;
+    font-size: 14px;
+    line-height: 20px;
+    width: 100%;
+  }
+  input {
+    height: 44px;
+    &:read-only {
+      border: 1px solid transparent;
+      color: var(--blue-600);
+      font-family: Quicksand500;
+      font-size: 14px;
+      line-height: 20px;
+      background-color: var(--pink-100);
+    }
+    &:focus:not(&:read-only) {
+      border: none;
+      background-color: var(--pink-200);
+    }
+  }
+  .textarea {
+    width: 392px;
+    height: 104px;
+    padding-left: 0;
+    padding-right: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    &::-webkit-scrollbar {
+      display: none;
+      resize: none;
+    }
+    &:focus-within {
+      border: 1px solid transparent;
+      background-color: var(--pink-200);
+      ::-webkit-scrollbar-track {
+        border-left: 2px solid var(--pink-200);
+        border-right: 2px solid var(--pink-200);
+      }
+    }
+    textarea {
+      cursor: default;
+      width: 100%;
+      height: 100%;
+      padding: 0 16px;
+      outline: none;
+      border: none;
+      background-color: transparent;
+      color: var(--blue-600);
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: var(--grey-100);
+        margin: 8px 0;
+        margin-right: 20px;
+        border-radius: 10px;
+        border-left: 2px solid var(--white);
+        border-right: 2px solid var(--white);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--blue-100);
+        border-radius: 10px;
+      }
+    }
+  }
+  &.size-m {
+    input {
+      width: 408px;
+      height: 44px;
+    }
+  }
+  &.size-ms {
+    input {
+      width: 392px;
+      height: 44px;
+    }
+  }
+  &.size-s {
+    input {
+      height: 44px;
+      width: 198px;
+    }
+  }
+  &.size-l {
+    input {
+      width: 618px;
+      height: 44px;
+    }
+  }
+  &.size-100 {
+    flex-direction: row;
+    input {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .input-password {
+    -webkit-text-security: disc;
+  }
+}

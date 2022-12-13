@@ -1,0 +1,29 @@
+.container {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 0;
+  background: var(--light-200);
+  .inner {
+    width: 100%;
+    background: var(--blue-700);
+    height: 100%;
+  }
+  &.top {
+    top: -25px;
+    .inner {
+      border-bottom-right-radius: 25px;
+    }
+  }
+  &.bottom {
+    bottom: -25px;
+    .inner {
+      border-top-right-radius: 25px;
+    }
+  }
+  &.dark-blue {
+    .inner {
+      background: var(--blue-800);
+    }
+  }
+}

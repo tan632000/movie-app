@@ -1,0 +1,201 @@
+@use "../../styles/breakpoint.scss" as *;
+.container {
+  color: var(--blue-600);
+  font-family: Quicksand500;
+  &.desktop-hidden {
+    display: none;
+  }
+}
+.text-heading-6 {
+  font-size: 20px;
+  font-family: Quicksand700;
+}
+.text-heading-5 {
+  font-size: 36px;
+  font-family: Quicksand500;
+}
+.text-heading-4 {
+  font-size: 28px;
+  font-family: Quicksand500;
+}
+.text-heading-3 {
+  font-size: 28px;
+  font-family: Quicksand500;
+}
+.text-heading-2 {
+  font-size: 24px;
+  font-family: Quicksand500;
+}
+.text-heading-1 {
+  font-size: 20px;
+  font-family: Quicksand500;
+}
+.text-title-1 {
+  font-size: 14px;
+}
+.text-title-2 {
+  font-size: 16px;
+  font-family: Quicksand500;
+}
+.text-title-3 {
+  font-size: 14px;
+  font-family: Quicksand400;
+}
+.text-title-4 {
+  font-size: 12px;
+  line-height: 18px;
+  font-family: Quicksand500;
+}
+.text-title-4-bold {
+  font-size: 12px;
+  line-height: 18px;
+  font-family: Quicksand700;
+}
+.text-title-4-light {
+  font-size: 12px;
+  line-height: 18px;
+  font-family: Quicksand500;
+}
+.text-title-5 {
+  font-size: 18px;
+  line-height: 24px;
+  font-family: Quicksand500;
+}
+.text-title-print {
+  font-size: 26px;
+  line-height: 33px;
+  margin-bottom: 3px;
+  font-family: Salesforce700;
+}
+.text-print {
+  font-size: 19px;
+  line-height: 24px;
+  font-family: Salesforce400;
+}
+.text-title-6 {
+  font-size: 28px;
+  line-height: 32px;
+  font-family: Quicksand700;
+}
+.text-title-7 {
+  font-size: 14px;
+  font-family: Quicksand700;
+}
+.text-title-7-light {
+  font-size: 14px;
+  line-height: 20px;
+  font-family: Quicksand500;
+}
+.text-title-8 {
+  font-size: 16px;
+  font-family: Quicksand700;
+}
+.text-title-9 {
+  font-size: 32px;
+  line-height: 48px;
+  font-family: Quicksand700;
+}
+.text-title-10 {
+  font-size: 24px;
+  line-height: 32px;
+  font-family: Quicksand700;
+}
+.text-title-11 {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Quicksand600;
+}
+.text-blue {
+  color: var(--blue-600);
+}
+
+.text-lighter-blue {
+  color: var(--blue-200);
+}
+
+.text-white {
+  color: var(--white);
+}
+
+.text-light-red {
+  color: var(--red-200);
+}
+
+.text-red {
+  color: var(--red-100);
+}
+.text-dark-gray {
+  color: var(--dark-100);
+}
+.text-blue-white {
+  color: var(--blue-600);
+}
+.text-violet {
+  color: var(--violet-100);
+}
+.text-light-red {
+  color: var(--red-200);
+}
+//MOBILE CSS
+@media screen and (max-width: $minWidthTablet) {
+  .container.desktop-hidden {
+    display: block;
+  }
+  .text-title-6 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  .text-title-5 {
+    color: inherit;
+    font-size: 16px;
+  }
+  .text-title-9 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .text-mobile-red {
+    color: var(--red-100);
+  }
+  .text-mobile-dark-red {
+    color: var(--red-200);
+  }
+  .text-blue-white {
+    color: var(--white);
+  }
+}
+.text-mobile {
+  &.desktop-hidden {
+    display: block;
+  }
+  &.text-title-6 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  &.text-title-5 {
+    color: inherit;
+    font-size: 16px;
+  }
+  &.text-title-9 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  &.text-mobile-red {
+    color: var(--red-100);
+  }
+  &.text-mobile-dark-red {
+    color: var(--red-200);
+  }
+  &.text-blue-white {
+    color: var(--white);
+  }
+}
+
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}

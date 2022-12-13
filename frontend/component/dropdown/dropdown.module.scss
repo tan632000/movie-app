@@ -1,0 +1,258 @@
+@use '../../styles/breakpoint.scss' as *;
+.container {
+  position: relative;
+  width: max-content;
+  .button {
+    height: 32px;
+    width: 100px;
+    background: var(--blue-600);
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 12px;
+
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      outline: none;
+    }
+    &__icon {
+      margin-right: 12px;
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    @media screen and (min-width: $maxWidthMobile) {
+      &:hover {
+        background-color: var(--red-200);
+      }
+    }
+    .icon {
+      display: block;
+      margin-left: auto;
+      transform: translateY(-1px);
+      &.rotate {
+        transform: rotate(180deg) translateY(-1px);
+      }
+    }
+    .lable {
+      min-width: 65px;
+      text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-right: 5px;
+      width: 100%;
+      &.center {
+        text-align: center;
+      }
+    }
+  }
+  .active {
+    background-color: var(--red-200);
+  }
+  .menu {
+    display: none;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    border: 1px solid var(--blue-100);
+    border-radius: 8px;
+    background: var(--white);
+    top: 110%;
+    padding: 6px 0;
+    max-height: 260px;
+    overflow: auto;
+    &.dietDropdown {
+      left: -1px;
+    }
+    &.active {
+      display: block;
+    }
+    .item {
+      list-style: none;
+      padding: 6px 12px;
+      text-align: center;
+      cursor: pointer;
+
+      &:global(.found) {
+        background: var(--pink-200);
+      }
+      &:hover {
+        background: var(--pink-200);
+      }
+      .center {
+        justify-content: center;
+      }
+      &.presentDropdown,
+      &.dietDropdown {
+        padding: 0 6px;
+        .presentText {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 32px;
+          border-bottom: 1px solid var(--grey-100);
+          &.dietText {
+            justify-content: start;
+            padding-left: 10px;
+            height: 38px;
+          }
+        }
+        &:last-child {
+          .presentText {
+            border-bottom: none;
+          }
+        }
+      }
+      &.dietDropdown {
+        .label_icon {
+          margin-right: 10px;
+          svg {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+    }
+  }
+  &.day_access {
+    svg path {
+      fill: var(--blue-600);
+    }
+    .button {
+      .label {
+        padding-left: 8px;
+      }
+    }
+    .menu {
+      .item {
+        font-size: 14px !important;
+        line-height: 20px !important;
+      }
+    }
+  }
+}
+.label {
+  color: var(--violet-100);
+  padding-left: 16px;
+  font-size: 12px;
+  line-height: 20px;
+  font-family: Quicksand500;
+  margin-bottom: 2px;
+}
+
+// Have scrollbar
+.container.scrollbar,
+.container.noscrollbar {
+  .button {
+    height: 32px;
+    width: 100px;
+    background: var(--blue-600);
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 12px;
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      outline: none;
+    }
+    .icon {
+      display: block;
+      margin-left: auto;
+      transform: translateY(-1px);
+      &.rotate {
+        transform: rotate(180deg) translateY(-1px);
+      }
+    }
+  }
+
+  // Scrollbar
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--grey-100);
+    border-radius: 10px;
+    border-left: 2px solid var(--white);
+    border-right: 2px solid var(--white);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue-100);
+    border-radius: 10px;
+  }
+  .dropdown-wrapper {
+    padding: 6px 8px 6px 0;
+    position: absolute;
+    border-radius: 10px;
+    background-color: var(--white);
+    outline: 1px solid var(--blue-100);
+    outline-offset: -1px;
+    margin-left: 1px;
+    width: 100%;
+    margin-top: 7px;
+    transform: translateX(-1px);
+    padding: 6px 8px 6px 0;
+    z-index: 2;
+    .listBox {
+      max-height: 184px;
+      overflow-y: scroll;
+      padding-right: 10px;
+    }
+    .menu {
+      display: unset;
+      position: unset;
+      z-index: unset;
+      border: none;
+      margin-bottom: 0;
+      top: unset;
+      .item {
+        list-style: none;
+        padding: 8px 0 8px 24px;
+        width: unset;
+        cursor: pointer;
+        .text {
+          white-space: normal;
+          text-align: left;
+        }
+        &:hover {
+          background: var(--pink-200);
+        }
+        .center {
+          justify-content: center;
+        }
+      }
+      .border {
+        height: 0.75px;
+        background-color: var(--grey-100);
+        margin-left: 14px;
+        margin-right: 14px;
+        list-style-type: none;
+        &:last-child {
+          height: 0;
+        }
+      }
+    }
+  }
+}
+.container.dropdown.noscrollbar {
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+  .dropdown-wrapper {
+    padding: 6px 0;
+    .listBox {
+      padding-right: 0;
+    }
+  }
+}

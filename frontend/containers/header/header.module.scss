@@ -1,0 +1,243 @@
+@use "../../styles//breakpoint.scss" as *;
+.container {
+  --spacing: 10px;
+  --timer: 0.4s;
+  .account {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 18px;
+  }
+  .hamburger {
+    background-color: transparent;
+    border: 0;
+    outline: none;
+  }
+  .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    .user-icon {
+      padding-left: 10px;
+      .icon {
+        display: block;
+      }
+      .iconHover {
+        display: none;
+      }
+      &:hover,
+      &:active {
+        .icon {
+          display: none;
+        }
+        .iconHover {
+          display: block;
+        }
+      }
+    }
+  }
+  .logout {
+    position: absolute;
+    z-index: 9;
+    right: calc(-1 * var(--spacing));
+    top: calc(100% + var(--spacing));
+  }
+  .title {
+    padding-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    .line {
+      margin-top: 11px;
+      margin-bottom: 32px;
+      width: 100%;
+      height: 1px;
+      background: var(--red-200);
+    }
+    .subTitle {
+      padding-left: 10px;
+    }
+    .dropdown {
+      margin-left: auto;
+      padding-bottom: 2px;
+      button {
+        background: none;
+        width: 200px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+    .tab {
+      display: none;
+    }
+  }
+  .menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: transform var(--timer);
+    transform: translateX(-100%);
+    z-index: 3;
+    &.show {
+      transform: translateX(0);
+    }
+    .wrapper {
+      background-color: var(--blue-600);
+      border-radius: 0px 32px 32px 0px;
+      height: 100%;
+      width: calc(296 / 375 * 100%);
+      position: relative;
+    }
+    .close {
+      background-color: transparent;
+      border: 0;
+      outline: none;
+      padding: 0;
+      position: absolute;
+      top: 28px;
+      left: 20px;
+      &:active {
+        svg {
+          path {
+            fill: var(--red-200);
+          }
+        }
+      }
+      svg {
+        path {
+          fill: var(--white);
+        }
+      }
+    }
+    .content {
+      position: absolute;
+      top: 86px;
+      left: 40px;
+      .item.active {
+        color: var(--red-200);
+      }
+      .heading {
+        color: var(--white);
+        font-size: 16px;
+        line-height: 24px;
+        font-family: Quicksand700;
+        margin-bottom: 29px;
+      }
+      .listItem {
+        list-style-type: none;
+        padding-left: 20px;
+        li {
+          font-size: 14px;
+          line-height: 20px;
+          margin-bottom: 26px;
+        }
+        a {
+          color: var(--white);
+          font-family: Quicksand500;
+        }
+      }
+      .heading,
+      .listItem {
+        a:focus,
+        a:active,
+        a:hover {
+          color: var(--red-200);
+        }
+      }
+    }
+  }
+  .dim {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    z-index: -1;
+    &.show {
+      transition: opacity var(--timer) ease-in-out;
+      opacity: 1;
+      z-index: 2;
+    }
+  }
+  @mixin mobile {
+    background: var(--blue-700);
+    .account {
+      margin-top: 0;
+      padding: 20px 20px 0 20px;
+    }
+    .logout {
+      top: calc(100% + 6px);
+      right: 0;
+    }
+    .title {
+      padding-top: 40px;
+      padding-bottom: 26px;
+      justify-content: center;
+      .text {
+        text-align: center;
+        margin-left: 23px;
+        margin-right: 23px;
+      }
+      .line {
+        display: none;
+      }
+      .subTitle {
+        padding-left: 10px;
+        width: 100%;
+        text-align: center;
+      }
+      .dropdown {
+        display: none;
+      }
+      .tab {
+        display: block;
+        margin-top: 26px;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    }
+    &.qr-code {
+      background: none;
+      z-index: 2;
+      .account {
+        margin-right: 0px !important;
+      }
+    }
+  }
+  &.mobileUI {
+    @include mobile;
+  }
+  @media screen and (max-width: $maxWidthMobile) {
+    @include mobile;
+  }
+  &.qr-code {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    .account {
+      margin-top: 0;
+      margin-left: auto;
+      padding-top: 20px;
+      margin-right: 20px;
+      width: auto;
+      height: auto;
+      display: flex;
+      justify-content: end;
+    }
+    .title {
+      display: none;
+    }
+  }
+}

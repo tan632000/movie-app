@@ -1,0 +1,31 @@
+@use '../../styles/breakpoint.scss' as *;
+.container {
+  color: var(--blue-600);
+  display: flex;
+  font-size: 14px;
+  line-height: 20px;
+  height: 36px;
+  align-items: center;
+  font-family: Quicksand700;
+  .item {
+    margin-right: 6px;
+    margin-bottom: 0;
+    &:not(&:first-child) {
+      color: var(--red-200);
+      position: relative;
+      padding-left: 16px;
+      &::before {
+        content: '/';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+  &.mobileUI {
+    display: none;
+  }
+  @media screen and (max-width: $maxWidthMobile) {
+    display: none;
+  }
+}

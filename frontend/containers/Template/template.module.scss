@@ -1,0 +1,40 @@
+@use "../../styles//breakpoint.scss" as *;
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--light-200);
+  .navbar {
+    position: fixed;
+    height: 100%;
+    width: calc(280 * 100% / 1440);
+    top: 0;
+    left: 0;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+  .body {
+    margin-left: calc(280 / 1440 * 100%);
+    width: calc(1160 / 1440 * 100%);
+    padding-left: calc(32 * 100% / 1440);
+    padding-right: calc(32 * 100% / 1440);
+    .header {
+      width: 100%;
+    }
+    &.fullScreen {
+      margin: 0;
+      width: 100%;
+      &.mobileUI {
+        padding: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width: $maxWidthMobile) {
+    .body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+  }
+}

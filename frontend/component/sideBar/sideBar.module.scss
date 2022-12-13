@@ -1,0 +1,197 @@
+.side-bar a {
+  color: #fff;
+  text-decoration: none;
+}
+.side-bar li.nav a {
+  &.active {
+    background-color: var(--dark-300);
+  }
+}
+.content {
+  width: 100%;
+  height: 100%;
+  .inner {
+    margin-bottom: 60px;
+  }
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+    .heading {
+      color: var(--white);
+      font-family: Quicksand700;
+      font-size: 18px;
+      line-height: 32px;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+    //Logo for JSEA
+    &.jsea {
+      margin-top: 86px;
+      margin-bottom: 26px;
+      padding-left: 32px;
+      display: flex;
+      align-items: flex-start;
+      font-family: BebasNeue;
+      .title {
+        color: var(--white);
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 28px;
+        margin-bottom: 0;
+      }
+      .sub__title {
+        background-color: var(--red-400);
+        width: 120px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -2px;
+        span {
+          color: var(--white);
+          font-size: 24px;
+          line-height: 24px;
+          padding-top: 2px;
+        }
+      }
+    }
+    //Logo for BNEF
+    &.bnef {
+      margin-top: 107px;
+      .heading {
+        font-family: AvenirNext700;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        margin-top: 0;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .side-bar {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: var(--blue-700);
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    .dropdown {
+      display: none;
+      background-color: var(--blue-800);
+      &.active {
+        display: block;
+      }
+      li.nav a {
+        font-size: 14px;
+        line-height: 20px;
+        font-family: Quicksand500;
+      }
+    }
+    li.nav {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      margin: 0;
+      position: relative;
+      height: 60px;
+      max-width: 100%;
+      .icon {
+        transform: translateY(-1px);
+        margin-right: 16px;
+      }
+      .line {
+        height: 60px;
+        width: 9px;
+        margin-right: 23px;
+        &.subItem {
+          margin-right: 63px;
+        }
+      }
+      .rectangle {
+        display: none;
+      }
+      .arrowDown {
+        position: absolute;
+        top: 17px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 1;
+        svg {
+          path {
+            fill: var(--light-200);
+          }
+        }
+        &:hover {
+          svg {
+            path {
+              fill: var(--red-200);
+            }
+          }
+        }
+      }
+
+      &.active {
+        .arrowDown {
+          svg {
+            path {
+              fill: var(--blue-600);
+            }
+          }
+        }
+        background-color: var(--light-200);
+        .line {
+          background: var(--red-200);
+        }
+        .icon svg {
+          path {
+            fill: var(--blue-600);
+          }
+        }
+        a {
+          color: var(--blue-600);
+          font-family: Quicksand700;
+        }
+        .rectangle {
+          display: block;
+        }
+      }
+      &:hover {
+        a {
+          color: var(--red-200);
+          font-family: Quicksand700;
+        }
+        .icon svg {
+          path {
+            fill: var(--red-200);
+          }
+        }
+      }
+      a {
+        font-size: 16px;
+        line-height: 24px;
+        font-family: Quicksand500;
+        height: 48px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 952px) {
+  .side-bar li.nav-item a.nav-link {
+    font-size: 14px;
+    padding: 8px 8px;
+  }
+}

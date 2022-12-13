@@ -1,0 +1,38 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --orange-100: #eb9023;
+  --red-100: #ff3f3f;
+  --red-200: #fd687a;
+  --red-300: #fc4359;
+  --red-400: #b00031;
+  --dark-100: #231f20;
+  --dark-200: #00285b;
+  --dark-300: #002049;
+  --dark-400: #1b213e90;
+  --dark-500: #0e274e;
+  --dark-600: #0d1638;
+  --light-100: #f3f5f7;
+  --light-200: #f3f5f6;
+  --blue-100: #b1c5dd;
+  --blue-200: #6ea1d8;
+  --blue-300: #d0e8f8;
+  --blue-400: #1c75bc;
+  --blue-500: #5b90d3;
+  --blue-600: #203d68;
+  --blue-700: #213d68;
+  --blue-800: #172e52;
+  --grey-100: #e6eaf3;
+  --grey-200: #d8dae5;
+  --grey-300: #e2e2e2;
+  --grey-400: #afafc0;
+  --grey-500: #667e9c;
+  --pink-100: #fbfbfb;
+  --pink-200: #f4ebec;
+  --pink-300: #ff7582;
+  --violet-100: #7a79a9;
+  --primary_gray: rgba(0, 0, 0, 0.3);
+  --gradient-100: linear-gradient(156.3deg, #fd687a 19.52%, #b277fd 88.16%);
+  --gradient-200: linear-gradient(156.3deg, #fc4359 19.52%, #9c51fb 88.16%);
+  --gradient-300: linear-gradient(225.52deg, #3f508f 0.68%, #84589f 25.43%, #3f508f 53.94%);
+}
