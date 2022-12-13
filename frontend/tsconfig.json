@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "component/Modal/Create.js"  ],
   "exclude": [
     "node_modules"
   ]

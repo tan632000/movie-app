@@ -1,37 +1,18 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
 import cookie from "js-cookie";
-import moment from "moment";
-import axiosClient from "../../apis/axiosClient";
 import { deviceType } from "../../utils/checkDeviceUser";
 
-import { subpathsBnef } from "../../utils/subpaths";
 import Text from "../../component/Text";
 import Button from "../../component/Button";
-import Dropdown from "../../component/dropdown";
-import Tab from "../../component/Tab";
 import BreadCrumbs from "../../component/BreadCrumbs";
 import MenuIcon from "../../public/icons/hamburger-menu.svg";
 import CloseIcon from "../../public/icons/close.svg";
-import AdminIcon from "../../public/icons/account/admin.svg";
 import JoshIcon from "../../public/icons/account/josh.svg";
 import AdminIconHover from "../../public/icons/account/adminHover.svg";
-import ViewerIcon from "../../public/icons/account/viewer.svg";
-import ViewerIconHover from "../../public/icons/account/viewerHover.svg";
-import BoothIcon from "../../public/icons/account/booth.svg";
-import BoothIconHover from "../../public/icons/account/boothHover.svg";
-import CheckinIcon from "../../public/icons/account/checkin.svg";
-import CheckinIconHover from "../../public/icons/account/checkinHover.svg";
-import RegLeaderIcon from "../../public/icons/account/regLeader.svg";
-import RegLeaderIconHover from "../../public/icons/account/regLeaderHover.svg";
-import RegStaffIcon from "../../public/icons/account/regStaff.svg";
-import RegStaffIconHover from "../../public/icons/account/regStaffHover.svg";
-import Area1Icon from "../../public/icons/account/area1.svg";
-import Area1IconHover from "../../public/icons/account/area1Hover.svg";
-import Area2Icon from "../../public/icons/account/area2.svg";
-import Area2IconHover from "../../public/icons/account/area2Hover.svg";
 import styles from "./header.module.scss";
+import Close from "../../component/Modal/Create";
+import Popup from "reactjs-popup"
 
 interface HeaderProps {
   title?: string;
@@ -55,7 +36,6 @@ const Header: React.FC<HeaderProps> = ({
   option,
 }) => {
   const [isDarkBackground, setIsDarkBackground] = useState<boolean>(false);
-  const dispatch = useDispatch();
 
   let subpaths: any[] = [];
 
@@ -78,14 +58,10 @@ const Header: React.FC<HeaderProps> = ({
 
   const logout = (e: any) => {
     e.preventDefault();
-    axiosClient.post<any, any>("/logout").then((data) => {
-      if (data.success === true) {
-        cookie.remove("token_rgs_pt");
-        localStorage.removeItem("username");
-        localStorage.removeItem("role_id");
-        router.push("/login");
-      }
-    });
+    cookie.remove("token_rgs_pt");
+    localStorage.removeItem("username");
+    localStorage.removeItem("user_id");
+    router.push("/login");
   };
 
   useEffect(() => {
@@ -120,11 +96,6 @@ const Header: React.FC<HeaderProps> = ({
     if (setDay) {
       setDay(value);
     }
-  };
-
-  const handleChangeTab = (tab: any) => {
-    setDefaultDay(tab.label);
-    setDayData(tab.value);
   };
 
   useEffect(() => {
@@ -178,61 +149,20 @@ const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
       <div className={styles.title}>
-        <div className={styles["text"]}>
+        <div className={styles.text}>
           <Text
             content={title}
             size="title-9"
             color="mobile-dark-red"
             classStyles={option}
           />
+
         </div>
         <div className={styles.subTitle}>
           <Text color="blue-white" content={subTitle} size="title-9" />
         </div>
         <div className={styles.line} />
       </div>
-      <div className={`${styles.menu} ${showMenu && styles.show}`}>
-        <div className={styles.wrapper} ref={menuRef}>
-          <button className={styles.close} onClick={() => setShowMenu(false)}>
-            <CloseIcon />
-          </button>
-          <div className={styles.content}>
-            <div className={styles.heading}>
-              <a
-                href="/attendees"
-                onClick={handleClick}
-                className={`${styles.item} ${
-                  router.asPath == "/attendees" ? styles.active : ""
-                }`}
-              >
-                Statistics Overview
-              </a>
-            </div>
-            {subpaths.length > 0 && (
-              <ul className={styles.listItem}>
-                {subpaths.map(({ slug, label }) => (
-                  <li>
-                    <a
-                      href={`/attendees/${slug}`}
-                      onClick={handleClick}
-                      className={`${styles.item} ${
-                        router.asPath == `/attendees/${slug}`
-                          ? styles.active
-                          : ""
-                      }`}
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      </div>
-      {isMobile && (
-        <div className={`${styles.dim} ${showMenu && styles.show}`} />
-      )}
     </div>
   );
 };

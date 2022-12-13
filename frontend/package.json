@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^1.2.1",
+    "firebase": "^9.15.0",
     "jquery": "^3.6.1",
     "js-cookie": "^3.0.1",
     "moment": "^2.29.4",
@@ -17,6 +18,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
+    "reactjs-popup": "^2.0.5",
     "redux": "^4.2.0",
     "reduxsauce": "^1.2.1",
     "sass": "^1.56.2"

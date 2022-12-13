@@ -1,3 +1,4 @@
+const { db } = require("../db.js");
 const { createError } = require("../error.js");
 const User = require("../models/User.js");
 
@@ -42,9 +43,23 @@ const getUser = async (req, res, next) => {
   }
 };
 
+const listAllUsers = async (req, res) => {
+  const {page, limit} = req.query;
+  let result = [];
+  await db.collection('user')
+      .orderBy('name')
+      .startAt((parseInt(page) - 1) * 10)
+      .limit(parseInt(limit)).get().then((snapshot) => {
+      snapshot.forEach(element => {
+          result.push(element.data())
+      });
+  })
+  res.send(result)
+};
 
 module.exports = {
   update,
   deleteUser,
-  getUser
+  getUser,
+  listAllUsers
 }

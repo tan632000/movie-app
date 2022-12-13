@@ -18,6 +18,8 @@ function MyApp({ Component, pageProps }: any) {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  
+
   return (
     <>
       <Provider store={store}>

@@ -1,30 +1,35 @@
+import { useEffect, useState } from "react";
+import axiosClient from "../../apis/axiosClient";
 import styles from "./user.module.scss";
 const User = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const page = 1;
+    const limit = 10;
+    axiosClient
+      .get(`/users/list?limit=${limit}&page=${page}`)
+      .then((res) => {
+        setData(res);
+      })
+      .catch((err) => console.log());
+  }, []);
   return (
     <div className={styles.main}>
-      <div className={styles.bottom}>
-        {/* <Modal
-          idAttendee={0}
-          id="createModal"
-          content="createAttendee"
-          title="Create Attendee"
-        />
-        <div className={styles.systemError}>
-          <button
-            className={styles.systemErrorButton}
-            id="systemErrorButton"
-            data-bs-toggle="modal"
-            data-bs-target="#systemError"
-            type="button"
-          />
-          <Modal
-            idAttendee={0}
-            id="systemError"
-            content="systemError"
-            title="System Error"
-          />
-        </div> */}
-      </div>
+      {data.map((item) => {
+          return (
+            <>
+            <div className={styles.list}>
+              <div className={styles.card}>
+                <div className={styles.avatar}>
+                  <img src={item.avatar} alt="Picture" />
+                </div>
+                <h6>{item.name}</h6>
+              </div>
+            </div>
+            </>
+          );
+        })}
+      
     </div>
   );
 };

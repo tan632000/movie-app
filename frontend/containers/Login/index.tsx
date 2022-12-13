@@ -69,12 +69,13 @@ const LoginForm = () => {
         email,
         password,
       })
-      .then((data) => {
-        if (data.status === 200) {
-          const user = data.data.payload.user;
-          cookie.set("token_rgs_pt", data.data.payload.token, { expires: 1 });
+      .then((response) => {
+        if (response.status === 200) {
+          const user = response.payload.user;
+          cookie.set("token_rgs_pt", response.payload.token, { expires: 1 });
           localStorage.setItem("user_id", JSON.stringify(user._id));
-          router.push("/");
+          localStorage.setItem("username", JSON.stringify(user.name));
+          router.push("/dashboard");
         }
       });
   };
@@ -145,7 +146,6 @@ const LoginForm = () => {
           <button
             ref={submitBtnRef}
             className={`${active ? styles.active : ""}`}
-            disabled={!isValidForm}
             type="submit"
             onClick={submit}
           >

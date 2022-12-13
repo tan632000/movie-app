@@ -26,10 +26,11 @@ const signin = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT);
     const {password, ...other} = user._doc;
     let others = {
+      status: 200,
       payload: {
         user: other,
         token: token
-      }
+      },
     }
     res
       .cookie("access_token", token, {

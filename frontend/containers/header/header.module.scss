@@ -46,7 +46,13 @@
     top: calc(100% + var(--spacing));
   }
   .title {
-    padding-top: 16px;
+    .text {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      width: 100%;
+    }
+    padding-top: 36px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -183,7 +189,7 @@
       padding-bottom: 26px;
       justify-content: center;
       .text {
-        text-align: center;
+        text-align: center; 
         margin-left: 23px;
         margin-right: 23px;
       }
