@@ -1,13 +1,13 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axiosClient from "../../apis/axiosClient";
 import styles from "./movie.module.scss";
-import Close from "../../component/Modal/Create";
 import Popup from "reactjs-popup"
-import Create from "../../component/Modal/Create";
 import FileInput from "../../component/FileInput";
 
 const Movie = () => {
   const [movie, setMovie] = useState([]);
+  const [reload, setReload] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState({
 		name: "",
 		type: "",
@@ -33,28 +33,33 @@ const Movie = () => {
         data.type = "";
         data.img = "";
         data.video = "";
+        setReload(!reload)
+        setIsOpen(false);
       }).catch((err) => console.log(err))
 		} catch (error) {
 			console.log(error)
 		}
 	};
 
-  useEffect(() => {
+  const getListMovie = () => {
     const page = 1;
-    const limit = 10;
+    const limit = 20;
     axiosClient
       .get(`/movie/list?limit=${limit}&page=${page}`)
       .then((res) => {
         setMovie(res);
       })
       .catch((err) => console.log());
-  }, []);
+  }
+  useEffect(() => {
+    getListMovie();
+  }, [reload]);
 
   return (
     <>
       <div className={styles.button}>
-        <Popup modal trigger={<button>Click Me</button>}>
-          <form className={styles.modal} onSubmit={handleSubmit}>
+        <Popup onOpen={() => setIsOpen(true)} modal trigger={<button>Add Movie</button>}>
+          {isOpen && <form className={styles.modal} onSubmit={handleSubmit}>
             <h2>Add New Movie</h2>
             <div className={styles.content}>
               <div className={styles.wrapper}>
@@ -98,7 +103,7 @@ const Movie = () => {
                 </div>
               </div>
             </div>
-          </form>
+          </form>}
         </Popup>
       </div>
       <div className={styles.main}>

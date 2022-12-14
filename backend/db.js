@@ -8,8 +8,6 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
 
-
-
 const db = getFirestore()
 
 module.exports = {

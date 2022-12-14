@@ -2,7 +2,6 @@ const {db} = require('../db.js')
 
 const add = async (req, res) => {
     const {img, name, type, video} = req.body;
-    console.log(111);
     await db.collection('movie').add({
         name: name,
         img: img,
