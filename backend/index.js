@@ -8,6 +8,7 @@ const userRoutes = require("./routes/users.js");
 const bannerRoutes = require("./routes/banners.js");
 const favoriteRoutes = require("./routes/favorites.js");
 const movieRoutes = require("./routes/movies.js");
+const categoryRoutes = require("./routes/category.js");
 
 const app = express();
 app.use(cors())
@@ -30,6 +31,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/banners", bannerRoutes);
 app.use("/api/favorite", favoriteRoutes);
 app.use("/api/movie", movieRoutes);
+app.use("/api/category", categoryRoutes);
 
 app.listen(8900, () => {
   connect();

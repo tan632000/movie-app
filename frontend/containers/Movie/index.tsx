@@ -5,9 +5,12 @@ import Popup from "reactjs-popup"
 import FileInput from "../../component/FileInput";
 
 const Movie = () => {
-  const [movie, setMovie] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [reload, setReload] = useState(false)
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenAdd, setIsOpenAdd] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const [id, setId] = useState(0);
   const [data, setData] = useState({
 		name: "",
 		type: "",
@@ -16,7 +19,6 @@ const Movie = () => {
 	});
 
 	const handleChange = ({ currentTarget: input }) => {
-    console.log(input.name, input.value);
 		setData({ ...data, [input.name]: input.value });
 	};
 
@@ -24,7 +26,7 @@ const Movie = () => {
 		setData((prev) => ({ ...prev, [name]: value }));
 	};
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
 		e.preventDefault()
 		try {
       axiosClient.post('/movie/add', data)
@@ -34,12 +36,34 @@ const Movie = () => {
         data.img = "";
         data.video = "";
         setReload(!reload)
-        setIsOpen(false);
+        setIsOpenAdd(false);
       }).catch((err) => console.log(err))
 		} catch (error) {
 			console.log(error)
 		}
 	};
+
+  const updateMovie = (e) => {
+    e.preventDefault()
+    const result = {};
+    Object.keys(data).forEach(function(key, index) {
+      if (data[key].length > 0) {
+        result[key] = data[key]
+      }
+    });
+    
+    axiosClient
+      .put(`/movie/${id}`, result)  
+      .then((res) => {
+        data.name = "";
+        data.type = "";
+        data.img = "";
+        data.video = "";
+        setReload(!reload)
+        setIsOpenEdit(false)
+      })
+      .catch((err) => console.log());
+  }
 
   const getListMovie = () => {
     const page = 1;
@@ -47,10 +71,20 @@ const Movie = () => {
     axiosClient
       .get(`/movie/list?limit=${limit}&page=${page}`)
       .then((res) => {
-        setMovie(res);
+        setMovies(res);
       })
       .catch((err) => console.log());
   }
+
+  useEffect(() => {
+    axiosClient
+    .get('/category/list')
+    .then((res) => {
+      setCategories(res);
+    })
+    .catch((err) => console.log());
+  }, [])
+  
   useEffect(() => {
     getListMovie();
   }, [reload]);
@@ -58,8 +92,8 @@ const Movie = () => {
   return (
     <>
       <div className={styles.button}>
-        <Popup onOpen={() => setIsOpen(true)} modal trigger={<button>Add Movie</button>}>
-          {isOpen && <form className={styles.modal} onSubmit={handleSubmit}>
+        <Popup onOpen={() => setIsOpenAdd(true)} modal trigger={<button>Add Movie</button>}>
+          {isOpenAdd && <form className={styles.modal} onSubmit={handleSubmit}>
             <h2>Add New Movie</h2>
             <div className={styles.content}>
               <div className={styles.wrapper}>
@@ -76,11 +110,15 @@ const Movie = () => {
                   <div className={styles.dropdown}>
                     <select onChange={handleChange} value={data.type} name="type">
                       <option value=""></option>
-                      <option value="Exciting Movies">Exciting Movies</option>
-                      <option value="Anime Series">Anime Series</option>
-                      <option value="Action Movies">Action Movies</option>
-                      <option value="TV Drama">TV Drama</option>
-                      <option value="Southeast Asian Movies">Southeast Asian Movies</option>
+                      {
+                        categories.map((item, index) => {
+                          return (
+                            <>
+                              <option key={index} value={item.type}>{item.type}</option>
+                            </>
+                          )
+                        })
+                      }
                     </select>
                   </div>
                   <FileInput
@@ -107,20 +145,76 @@ const Movie = () => {
         </Popup>
       </div>
       <div className={styles.main}>
-        {movie.map((item) => {
+        {movies.map((item, index) => {
           return (
             <>
-            <div className={styles.list}>
-              <div className={styles.card}>
-                <div className={styles.avatar}>
-                  <img src={item.img} alt="Picture" />
+              <div className={styles.list} id={item.document_id} key={index}>
+                <div className={styles.card}>
+                  <div className={styles.avatar}>
+                    <img src={item.img} alt="Picture" />
+                  </div>
+                  <h6>{item.name}</h6>
+                  <div className={styles.type}>
+                    <p>{item.type}</p>
+                  </div>
                 </div>
-                <h6>{item.name}</h6>
-                <div className={styles.type}>
-                  <p>{item.type}</p>
+                <div className={styles.copy}>
+                  <Popup onOpen={() => {setIsOpenEdit(true); setId(item.document_id)}} modal trigger={<button className={styles.edit}>Edit</button>}>
+                    {
+                      isOpenEdit && <form className={styles.modal} onSubmit={updateMovie}>
+                        <h2>Edit Movie</h2>
+                        <div className={styles.content}>
+                          <div className={styles.wrapper}>
+                            <div className={styles.card}>
+                              <div className={styles.title}>
+                                <input
+                                  name="name"
+                                  type="text"
+                                  placeholder="Title"
+                                  onChange={handleChange}
+                                  defaultValue={item.name}
+                                />
+                              </div>
+                              <div className={styles.dropdown}>
+                                <select onChange={handleChange} value={data.type} name="type">
+                                  <option value=""></option>
+                                  {
+                                    categories.map((item, index) => {
+                                      return (
+                                        <>
+                                          <option key={index} value={item.type}>{item.type}</option>
+                                        </>
+                                      )
+                                    })
+                                  }
+                                </select>
+                              </div>
+                              <FileInput
+                                name="img"
+                                label="Choose Image"
+                                handleInputState={handleInputState}
+                                type="image"
+                                value={data.img}
+                              />
+                              <FileInput
+                                name="video"
+                                label="Choose Video"
+                                handleInputState={handleInputState}
+                                type="audio"
+                                value={data.video}
+                              />
+                              <div className={styles.submit}>
+                                <button>Submit</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    }
+                  </Popup>
+                  <button className={styles.delete}>Delete</button>
                 </div>
               </div>
-            </div>
             </>
           );
         })}

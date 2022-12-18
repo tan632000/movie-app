@@ -1,0 +1,203 @@
+.modal {
+    width: 600px;
+    position: relative;
+    padding: 20px 24px;
+    max-width: 90vw;
+    min-width: 454px;
+    background: var(--blue-700);
+    box-shadow: none;
+    min-height: 200px;
+    border-radius: 16px;
+    color: white;
+    h2 {
+        padding: 0;
+        font-size: 24px;
+        padding-bottom: 16px;
+        margin: 0;
+        font-weight: 600;
+        line-height: 22px;
+        font-family: Source Sans Pro;
+    }
+    .content {
+        padding-top: 0;
+        overflow-y: auto;
+        padding: 20px 24px;
+        flex: 1 1 auto;
+        .wrapper {
+            gap: 16px;
+            display: flex;
+            flex-direction: column;
+            .card {
+                display: flex;
+                flex-direction: column;
+                margin-top: 24px;
+                margin-bottom: 16px;
+                .title {
+                    background: #141414;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    font-weight: 400;
+                    font-family: Source Sans Pro;
+                    line-height: 1.4375em;
+                    color: #dcd7d7;
+                    box-sizing: border-box;
+                    align-items: center;
+                    width: 100%;
+                    position: relative;
+                    border-radius: 4px;
+                    display: inline-flex;
+                    input {
+                        padding: 12px;
+                        box-shadow: none;
+                        border: 0;
+                        box-sizing: content-box;
+                        background: none;
+                        height: 1.4375em;
+                        margin: 0;
+                        -webkit-tap-highlight-color: transparent;
+                        display: block;
+                        min-width: 0;
+                        width: 100%;
+                        color: rgb(218, 201, 201);
+                    }
+                }
+                .dropdown {
+                    font-size: 16px;
+                    font-weight: 400;
+                    font-family: Source Sans Pro;
+                    line-height: 1.4375em;
+                    color: #f0e0e0;
+                    box-sizing: border-box;
+                    position: relative;
+                    cursor: text;
+                    display: inline-flex;
+                    align-items: center;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    select {
+                        width: 100%;
+                        height: 40px;
+                        padding: 8px 12px;
+                        border-radius: 6px;
+                        background-color: #141414;
+                        color: #f0e0e0;
+                    }
+                }
+                .submit {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 20px 8px 0 8px;
+                    button {
+                        min-width: 123px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        box-sizing: border-box;
+                        cursor: pointer;
+                        text-transform: none;
+                        font-size: 16px;
+                        box-shadow: none;
+                        padding: 8px 31px;
+                        border-radius: 6px;
+                        color: #FFFFFF;
+                        font-weight: 600;
+                        border: none;
+                        background-color: #E20E02;
+                    }
+                }
+                .close {
+                    top: 0px;
+                    right: 20px;
+                    position: absolute;
+                    width: 18px;
+                    height: 10px;
+                    font-size: 40px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 0 10px;
+    margin: 0 auto;
+    margin-top: 70px;
+    
+    .add {
+        margin-bottom: 16px;
+        padding: 10px 8px;
+        border-radius: 6px;
+        border: none;
+        text-transform: none;
+        font-size: 16px;
+        box-shadow: none;
+        color: #FFFFFF;
+        cursor: pointer;
+        font-family: Source Sans Pro;
+        user-select: none;
+        vertical-align: middle;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        background-color: red;
+    }
+    .title {
+        text-align: center;
+        font-size: 26px;
+        margin-bottom: 30px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        th {
+            font-size: 18px;
+            padding: 12px;
+            border: 1px solid #eeeeee;
+            text-align: center;
+            background-color: rgba(217, 221, 146, 0.2);
+        }
+        td {
+            border: 1px solid #eeeeee;
+            text-align: center;
+            input {
+                font-size: 16px;
+                background-color: transparent;
+                border: none;
+                width: 90%;
+                padding: 12px 12px;
+                font-family: 'Poppins', sans-serif;
+                &:hover {
+                    background-color: #fffaf3;
+                }
+                &:focus {
+                    outline: 1px solid #ccc;
+                    border: 1px solid #ccc;
+                }
+            }
+            button {
+                height: 30px;
+                cursor: pointer;
+                border-style: none;
+                border-radius: 6px;
+                color: rgb(48, 31, 31);
+                margin-right: 10px;
+            }
+            .update {
+                background-color: rgb(223, 201, 161);
+            }
+            .delete {
+                background-color: rgb(229, 95, 95);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+

@@ -75,7 +75,7 @@ const LoginForm = () => {
           cookie.set("token_rgs_pt", response.payload.token, { expires: 1 });
           localStorage.setItem("user_id", JSON.stringify(user._id));
           localStorage.setItem("username", JSON.stringify(user.name));
-          router.push("/dashboard");
+          router.push("/user");
         }
       });
   };

@@ -24,7 +24,7 @@ html.modal-show .modal {
   width: calc(100% - var(--scrollbar-width));
 }
 
-html.modal-show .dashboard-container {
+html.modal-show .category-container {
   width: calc(100% - var(--scrollbar-width));
 }
 

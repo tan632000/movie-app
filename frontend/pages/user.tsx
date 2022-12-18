@@ -5,7 +5,7 @@ import Template from "../containers/Template";
 
 const UserPage: NextPage = () => {
   return (
-    <div className="dashboard-container">
+    <div className="category-container">
       <Template clasActive="user" content={<User />} title="User Lists" />
     </div>
   );

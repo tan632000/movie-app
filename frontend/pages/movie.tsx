@@ -5,7 +5,7 @@ import Template from "../containers/Template";
 
 const MoviePage: NextPage = () => {
   return (
-    <div className="dashboard-container">
+    <div className="category-container">
       <Template clasActive="movie" content={<Movie />} title="Movie Lists" />
     </div>
   );

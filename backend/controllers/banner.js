@@ -1,5 +1,4 @@
 const {db} = require('../db.js')
-const { query, collection, getDocs, orderBy, startAt, endAt } = require("firebase/firestore");
 
 const add = async (req, res) => {
     const {img, name, type, video} = req.body;

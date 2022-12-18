@@ -43,15 +43,15 @@ const SideBar: React.FC<SideBarProps> = ({ classActive }) => {
         <ul className={`${styles.inner} nav nav-pills flex-column`}>
           <li
             className={`${styles.nav} ${
-              classActive === "dashboard" ? styles.active : ""
+              classActive === "category" ? styles.active : ""
             } nav-item`}
           >
             <div className={styles.line} />
             <div className={styles.icon}>
               <IconDashboard />
             </div>
-            <Link href="/dashboard" className={`nav-link dashboard`}>
-              Dashboard
+            <Link href="/category" className={`nav-link category`}>
+              Category
             </Link>
             <div className={styles.rectangle}>
               <Rectangle />

@@ -8,15 +8,15 @@ const add = async (req, res) => {
         type: type,
         video: video,
     })
-    res.status(200).send("Banner has been created!");
+    res.status(200).send("Movie has been created!");
 };
 
 const edit = async (req, res) => {
     const id = req.params.id;
-    const bannerRef = await db.collection('movie').doc(id).update({
+    await db.collection('movie').doc(id).update({
         ...req.body
     })
-    res.status(200).send(bannerRef);
+    res.status(200).send("Edit movie successfully!");
 }
 
 const get = async (req, res) => {
@@ -41,7 +41,7 @@ const getAll = async (req, res) => {
         .startAt((parseInt(page) - 1) * 10)
         .limit(parseInt(limit)).get().then((snapshot) => {
         snapshot.forEach(element => {
-            result.push(element.data())
+            result.push({document_id: element.id, ...element.data()})
         });
     })
     res.send(result)

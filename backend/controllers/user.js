@@ -3,22 +3,11 @@ const { createError } = require("../error.js");
 const User = require("../models/User.js");
 
 const update = async (req, res, next) => {
-  if (req.params.id === req.user.id) {
-    try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.status(200).json(updatedUser);
-    } catch (err) {
-      next(err);
-    }
-  } else {
-    return next(createError(403, "You can update only your account!"));
-  }
+  const id = req.params.id;
+  await db.collection('user').doc(id).update({
+      ...req.body
+  })
+  res.status(200).send("Edit movie successfully!");
 };
 
 const deleteUser = async (req, res, next) => {
@@ -51,7 +40,7 @@ const listAllUsers = async (req, res) => {
       .startAt((parseInt(page) - 1) * 10)
       .limit(parseInt(limit)).get().then((snapshot) => {
       snapshot.forEach(element => {
-          result.push(element.data())
+          result.push({document_id: element.id, ...element.data()})
       });
   })
   res.send(result)

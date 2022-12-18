@@ -22,7 +22,7 @@
   padding: 20px 24px;
   max-width: 90vw;
   min-width: 454px;
-  background: #242424;
+  background: var(--blue-700);
   box-shadow: none;
   min-height: 200px;
   border-radius: 16px;
@@ -149,6 +149,12 @@
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
     background-image: linear-gradient(rgb(58 21 230 / 5%), rgb(33 30 30 / 5%));
     border-radius: 20px;
+    cursor: pointer;
+    &:hover {
+      .copy {
+        display: flex !important;
+      }
+    }
     .card {
       display: flex;
       padding: 20px 16px;
@@ -156,6 +162,43 @@
       align-items: center;
       border-radius: 24px;
       flex-direction: column;
+    }
+    .copy {
+      display: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: rgba(94, 92, 92, 0.5);
+      padding: 20px 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      border-radius: 20px;
+      flex-direction: column;
+      justify-content: center;
+      button {
+        margin-bottom: 16px;
+        padding: 10px 8px;
+        min-width: 70%;
+        border-radius: 6px;
+        border: none;
+        text-transform: none;
+        font-size: 16px;
+        box-shadow: none;
+        color: #FFFFFF;
+        cursor: pointer;
+        font-family: Source Sans Pro;
+        user-select: none;
+        vertical-align: middle;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      }
+      .edit {
+        background: #f68a04;
+      }
+      .delete {
+        background: red;
+      }
     }
     .modal {
       display: none;
@@ -194,6 +237,8 @@
       font-family: Source Sans Pro;
       line-height: 1.57;
       margin-bottom: 0.35em;
+      height: 45px;
+      line-height: 18px;
     }
     .type {
       padding: 10px 0px;

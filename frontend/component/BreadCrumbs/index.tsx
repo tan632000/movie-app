@@ -11,8 +11,8 @@ const BreadCrumbs = () => {
   const breadcrumbMapping = (path: string) => {
     let breadcrumb = "";
     switch (path) {
-      case "dashboard":
-        breadcrumb = "Home";
+      case "category":
+        breadcrumb = "Category";
         break;
       case "user":
         breadcrumb = "User";
